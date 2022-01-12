@@ -221,98 +221,258 @@ class Game:
     #  print("arr " + str(arr))
 
     def artificial_intelligence(self):
-        playerarr = ["H6", "D3", "H4"]
+        # playerarr = ["H6","D3","H4"]
         player = [6, 3, 4]
-        target = "iv"
-        a = 0
+        target_class = "iv"
+        least_card = "70"
         points = 0
         play3 = ["Hearts", "Diamonds", "Hearts"]
-
-        playerarr = ["H6", "H3", "H4"]
-        player = [6, 3, 4]
-        # points = 0
-        player3 = ["Hearts", "Hearts", "Hearts"]
-
-        # playerarr = ["D6","S3","C4"]
+        # playerarr = ["H6","H3","H4"]
         # player = [6,3,4]
-        # points = 0
-        # player3 = ["Diamonds","Spades","Clubs"]
 
-        # playerarr = ["S6","S3","C4"]
-        # player = [6,3,4]
-        # points = 0
-        # player3 = ["Spades", "Spades","clubs"]
+        playerarr = [Game.player2[0].name, Game.player2[1].name, Game.player2[2].name]
+
+        print(playerarr)
+
+        player = [Game.player2[0].value, Game.player2[1].value, Game.player2[2].value]
+
+        print(player)
+        play3 = [Game.player2[0].suit, Game.player2[1].suit, Game.player2[2].suit]
+        print(play3)
 
         points = 0
         if ((play3[0] == play3[1]) and (play3[1] == play3[2]) and (play3[0] == play3[2])):
             points = player[0] + player[1] + player[2]
             print(points)
-            target = play3[0]
+            target_class = play3[0]
 
             if (player[0] > player[1]) and player[2] > player[1]:
-                a = playerarr[1]
+                least_card = playerarr[1]
             elif (player[1] > player[0]) and player[2] > player[0]:
-                a = playerarr[0]
+                least_card = playerarr[0]
             elif (player[0] > player[2]) and player[1] > player[2]:
-                a = player[2]
+                least_card = playerarr[2]
 
         elif ((play3[0] == play3[1]) and (player[0] + player[1] < player[2])):
             points = player[2]
-            target = play3[2]
+            target_class = play3[2]
 
             if play3[0] < play3[1]:
-                a = playerarr[0]
+                least_card = playerarr[0]
             elif (play3[0] > play3[1]):
-                a = playerarr[1]
+                least_card = playerarr[1]
 
         elif ((play3[0] == play3[1]) and (player[0] + player[1] > player[2])):
             points = player[0] + player[1]
-            target = play3[0]
-
-            a = playerarr[2]
+            target_class = play3[0]
+            least_card = playerarr[2]
             # return points
 
         elif ((play3[0] == play3[2]) and (player[0] + player[2] < player[1])):
             points = player[1]
-            target = play3[1]
+            target_class = play3[1]
 
             if play3[0] < play3[2]:
-                a = playerarr[0]
+                least_card = playerarr[0]
             elif (play3[0] > play3[2]):
-                a = playerarr[2]
+                least_card = playerarr[2]
         #  return points
 
         elif ((play3[0] == play3[2]) and (player[0] + player[2] > player[1])):
             points = player[0] + player[2]
-            target = play3[0]
-
-            a = playerarr[1]
-
+            target_class = play3[0]
+            least_card = playerarr[1]
             # return points
 
         elif ((play3[1] == play3[2]) and (player[1] + player[2] < player[0])):
             points = player[0]
-            target = play3[0]
-            # return points
-        elif ((play3[1] == play3[2]) and (player[1] + player[2] > player[1])):
+            target_class = play3[0]
+
+            if play3[1] < play3[2]:
+                least_card = playerarr[1]
+            elif (play3[2] < play3[1]):
+                least_card = playerarr[2]
+        # return points
+
+        elif ((play3[1] == play3[2]) and (player[1] + player[2] > player[0])):
             points = player[1] + player[2]
-            target = play3[1]
+            target_class = play3[1]
+            least_card = playerarr[0]
             # return points
 
         elif ((play3[0] != play3[1]) and (play3[1] != play3[2]) and (play3[0] != play3[2])):
             points = max(player[0], player[1], player[2])
             if (player[0] < player[1]) and player[2] < player[1]:
-                target = play3[1]
+                target_class = play3[1]
             elif (player[1] < player[0]) and player[2] < player[0]:
-                target = play3[0]
+                target_class = play3[0]
             elif (player[0] < player[2]) and player[1] < player[2]:
-                target = play3[2]
-            # return points
+                target_class = play3[2]
+
+            if (play3[0] > play3[1]) and play3[2] > play3[1]:
+                least_card = playerarr[1]
+            elif (play3[1] > play3[0]) and play3[2] > play3[0]:
+                least_card = playerarr[0]
+            elif (play3[0] > play3[2]) and play3[1] > play3[2]:
+                least_card = playerarr[2]
+            # return points   1
 
             # if Game.deck[ran_number].name
+        print("a" + str(least_card))
+        print("points " + str(points))
+        print("target " + str(target_class))
 
-        print(points)
-        print(target)
+        # __________________________
+        # ___________________________________________________________________________________________________________________________
+        player_2 = Game.player2
+        ran_number = random.randint(0, len(Game.deck) - 1)
+
+        # print("ran_number " +str(ran_number))
+        print("Want to pick up card from deck [1] or discard pile [2] ")
+
+        least_card_in_sui = []
+
+        isnottarget = 0
+
+        # print("print playe")
+        # print(player_2[0].suit)
+        # print(player_2[1].suit)
+        # print(player_2[2].suit)
+
+        # for count in range(0,3):
+        #  print(player_2[count].suit)
+
+        ttryi = 0
+
+        for counter in range(0, 3):
+            if player_2[counter].suit == target_class:
+                least_card_in_sui.append(player_2[counter].value)
+                ttryi = ttryi + 1
+            elif player_2[counter].suit != target_class:
+                isnottarget = isnottarget + 1
+
+            # print("tt ttryi " +str(ttryi))
+
+            # print("is not target " + str(isnottarget))
+
+        print(least_card_in_sui)
+
+        # print("min  " + str(min(least_card_in_sui)))
+
+        print("leaassst car " + str(least_card))
+
+        least_card_suit = min(least_card_in_sui)
+        # least_card_suit = "C5"
+
+        input1 = 0
+
+        # target_class = "Hearts"
+        # a = 3
+        # least_card = "S8"
+        # _____________________________________________________________
+        if (Game.discard[len(Game.discard) - 1].suit == target_class):
+            if ((Game.discard[len(Game.discard) - 1].value > least_card_suit) and (isnottarget == 0)) or (
+                    isnottarget >= 1):
+                input1 = 2
+            else:
+                input1 = 1
+        else:
+            input1 = 1
+
+        print(input1)
+        # --------------------------------------------------------------
+
+        # input1= int(input())
+
+        if input1 == 1:
+
+            # print(" card drawn: Do you want to keep " + str(arr[ran_number]) + " [Y]/[N] ")
+            # input2= input()
+            input2 = "input"
+            while (((input2 != "y") and (input2 != 'Y')) and ((input2 != "n") and (input2 != 'N'))):
+                print("Card drawn: Do you want to keep " + str(Game.deck[ran_number].name) + " [Y]/[N] ")
+                # input2= input()
+                # ______________________________________________________________________________
+
+                if (Game.deck[ran_number].suit == target_class):
+                    if ((Game.deck[ran_number].value > least_card_suit) and (isnottarget == 0)) or (isnottarget >= 1):
+                        input2 = "y"
+                    else:
+                        input2 = "n"
+                else:
+                    input2 = "n"
+                # if (Game.discard[len(Game.discard)-1].suit == target_class):# and (Game.discard[len(Game.discard)-1].value >least_card_in_sui):
+                #   input2 = "y"
+                # else:
+                #   input2 = "n"
+                # ____________________________________________________________
+
+                print(input2)
+                # input2
+            if ((input2 == "y") or (input2 == 'Y')):
+                print("Which card you want to switch with: " + str(player_2[0].name) + " [1], " + str(
+                    player_2[1].name) + "  [2]," + str(player_2[2].name) + " [3]")
+                # input3 = int(input())
+                input3 = 0
+                # ________________________________________________________________________
+                if player_2[0].name == least_card:
+                    input3 = 1
+                elif player_2[1].name == least_card:
+                    input3 = 2
+                elif player_2[2].name == least_card:
+                    input3 = 3
+                # __________________________________________________________________
+                print(input3)
+                b = input3 - 1
+                c = Game.deck[ran_number]
+                Game.discard.append(player_2[b])
+                player_2.pop(b)
+                player_2.append(Game.deck[ran_number])
+                Game.deck.pop(ran_number)
+            elif ((input2 == "n") or (input2 == 'N')):
+                Game.discard.append(Game.deck[ran_number])
+                Game.deck.pop(ran_number)
+        elif input1 == 2:
+            # print("Discard pile " + str(Game.discard[len(Game.discard)-1]))
+            print("Whic card you want to switch with: " + str(player_2[0].name) + " [1], " + str(
+                player_2[1].name) + "  [2]," + str(player_2[2].name) + " [3]")
+            # input4 = int(input())
+            input4 = 0
+
+            if player_2[0].name == least_card:
+                input4 = 1
+            elif player_2[1].name == least_card:
+                input4 = 2
+            elif player_2[2].name == least_card:
+                input4 = 3
+
+            print(input4)
+
+            ap = input4 - 1
+            c = player_2[ap]
+            d = Game.discard.pop()
+            player_2.pop(ap)
+            Game.discard.append(c)
+            player_2.append(d)
+
+        # print(player_2.names)
+
+        # Game.player2 = player
+        # _____________________________________________________________________________________________________________
+
+        #   Game.player2[0].name = playerarr[0]
+        #   Game.player2[1].name = playerarr[1]
+        #   Game.player2[2].name  = playerarr[2]
+
+        #  # Game.player2[0].value = player_2[0].value
+        #  # Game.player2[1].value = player_2[1].value
+        #   #-----Game.player2[2].value = player_2[2].value
+
+        #   Game.player2[0].suit = play3[0]
+        #   Game.player2[1].suit = play3[1]
+        #   Game.player2[2].suit = play3[2]
+
+        Game.player2 = player_2
 
     def getscore(self, x):
         if x == 1:
@@ -323,8 +483,11 @@ class Game:
 
         if x == 2:
             player = [Game.player2[0].value, Game.player2[1].value, Game.player2[2].value]
+
             play3 = [Game.player2[0].suit, Game.player2[1].suit, Game.player2[2].suit]
             # te the prints from the other
+
+        print("printt " + str(Game.player2[0].value))
 
         # Game.player1[1].value
 
@@ -333,6 +496,7 @@ class Game:
         points = 0
         # play3 = ["Hearts","Diamonds","Hearts"]
 
+        print(player)
         # playerarr = ["S6","S3","C4"]
         # player = [6,3,4]
         # points = 0
@@ -370,6 +534,17 @@ class Game:
 
 
 # -
+
+
+print("Do you wantt to play with AI [1] or  a person [2]")
+
+isAi = 0
+input34 = int(input())
+
+if input34 == 1:
+    isAi = 1
+if input34 == 2:
+    isAi = 2
 
 S = Game(2)
 S.startdeck()
@@ -410,9 +585,31 @@ while (((S.getscore(1) < 31) and (S.getscore(2) < 31)) and knock != 2):
         # elif ((a== "n") or (a== 'N')):
         #     g = 7
         #     break
+    elif ((turns % 2 == 1) and isAi == 1):
+        print("____________________________________Player2__________________________________________")
+        S.printval()
+        S.printplay_val()
+        # S.printdeck()
+
+        S.artificial_intelligence()
+        S.getscore(2)
+        # S.printdeck()
+
+        if (knock == 1):
+            print("Last turn before knock")
+            knock = 2
+            print(knock)
+        elif (knock == 0):
+            print("Do you want to knck?[Y] / [N/")
+            # a = input()
+            a = "n"
+            if ((a == "y") or (a == 'Y')):
+                print("Player1 knock")
+                knock = 1
+        turns = turns + 1
 
 
-    elif (turns % 2 == 1):
+    elif (turns % 2 == 1) and isAi == 2:
         print("____________________________________Player2__________________________________________")
         S.printval()
         S.printplay_val()
@@ -441,6 +638,10 @@ if (S.getscore(1) > S.getscore(2)):
     print("plaer 1 win")
 elif (S.getscore(1) < S.getscore(2)):
     print("player 2 win")
+
+
+
+
 
 
 
