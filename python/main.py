@@ -58,12 +58,10 @@ class Game:
                     "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades", "Spades",
                     "Spades", "Spades", "Spades"]
 
-   
+
 
    deck = []
-
    discard = []
-
    player1 = []
    player2 = []
 
@@ -123,7 +121,6 @@ class Game:
                time = time + 1
 
    def printplay_val(self):
-
        print("Player1 _____________________________________________________")
        time = 0
        for x in Game.player1:
@@ -146,8 +143,8 @@ class Game:
            else:
                print(x.name, ",", end='')
            time = time + 1
-    
-   def print_main(self,x):      
+
+   def print_main(self,x):
         time = 0
         len_of_discard_deck = len(Game.discard)
         print("Player"+ str(x)+ "'s Turn: _________________________________________________________")
@@ -171,7 +168,7 @@ class Game:
                print(x.name,"]       Player1: [ ? ? ? ]")
            elif time == 0:
                print("Player2: [", x.name, "", end='')
-           else:
+           else:j
                print(x.name, "", end='')
            time = time + 1
 
@@ -182,21 +179,6 @@ class Game:
 
 
    def startplayers(self):
-
-       # print(Game.player1)
-       # print(Game.player2)
-       # print(self.numplayers)
-       # player1 = []
-       # arr = [10,11,17,18,59,49,37,78,68,69,70]
-       # arr = Game.deck
-
-       # print("Hi")
-       # Player1 = Player([])
-       # Player2 = Player([])
-       # player2 = []
-       # discar = []
-       # discar = Game.discard
-
        for counter in range(0, 6):
            ran_number = random.randint(0, len(Game.deck) - 1)
            # print(ran_number)
@@ -212,16 +194,7 @@ class Game:
        Game.discard.append(Game.deck[ran_number])
        Game.deck.pop(ran_number)
 
-   # print("player " + str(Game.player1))
-   # print("player 2" + str(Game.player2))
-   # print("arr " + str(arr))
-   # print("disca " + str(discar))
    def turn_player(self, x):
-
-       # arr = [3,6,9,5,69]
-
-       # dcar = [23,24]
-       # player  = [59, 18, 49]
        if x == 1:
            player = Game.player1
        if x == 2:
@@ -232,14 +205,10 @@ class Game:
        # print("arr " + str(Game.deck))
 
        ran_number = random.randint(0, len(Game.deck) - 1)
-       # print("ran_number " +str(ran_number))
        print("Do you want to pick up a card from the deck [1] or the discard pile [2] ")
        input1 = int(input())
 
        if input1 == 1:
-
-           # print(" card drawn: Do you want to keep " + str(arr[ran_number]) + " [Y]/[N] ")
-           # input2= input()
            input2 = "input"
            while (((input2 != "y") and (input2 != 'Y')) and ((input2 != "n") and (input2 != 'N'))):
                print("Card drawn: Do you want to keep " + str(Game.deck[ran_number].name) + " [Y] / [N] ")
@@ -258,7 +227,6 @@ class Game:
                Game.discard.append(Game.deck[ran_number])
                Game.deck.pop(ran_number)
        elif input1 == 2:
-           # print("Discard pile " + str(Game.discard[len(Game.discard)-1]))
            print("Which card you want to switch with: " + str(player[0].name) + " [1], " + str(
                player[1].name) + "  [2]," + str(player[2].name) + " [3]")
            input4 = int(input())
@@ -274,30 +242,24 @@ class Game:
            Game.player2 = player
 
        # print("discard " + str(Game.discard))
-
    #  print("player " + str(player))
    #  print("arr " + str(arr))
 
    def artificial_intelligence(self):
-    #playerarr = ["H6","D3","H4"]
     player = [6,3,4]
     target_class = "iv"
     least_card = "70"
     points = 0
     play3 = ["Hearts","Diamonds","Hearts"]
-    # playerarr = ["H6","H3","H4"]
-    # player = [6,3,4]
+  
 
 
     playerarr = [Game.player2[0].name,Game.player2[1].name,Game.player2[2].name]
-
-    print(playerarr)
-
+    #print(playerarr)
     player = [Game.player2[0].value,Game.player2[1].value,Game.player2[2].value]
-
-    print(player)
+    #print(player)
     play3 = [Game.player2[0].suit,Game.player2[1].suit,Game.player2[2].suit]
-    print(play3)
+    #print(play3)
 
 
 
@@ -385,26 +347,9 @@ class Game:
     player_2 = Game.player2
     ran_number = random.randint(0,len(Game.deck) -1)
 
-    #print("ran_number " +str(ran_number))
     print("Want to pick up card from deck [1] or discard pile [2] ")
-
-
     least_card_in_sui = []
-
     isnottarget = 0
-
-
-
-    # print("print playe")
-    # print(player_2[0].suit)
-    # print(player_2[1].suit)
-    # print(player_2[2].suit)
-
-
-    #for count in range(0,3):
-    #  print(player_2[count].suit)
-
-
     ttryi =0
 
 
@@ -416,37 +361,9 @@ class Game:
       elif player_2[counter].suit != target_class:
         isnottarget=isnottarget+1
 
-
-      # print("tt ttryi " +str(ttryi))
-
-      # print("is not target " + str(isnottarget))
-
-
-
-    #print(least_card_in_sui)
-
-
-
-    #print("min  " + str(min(least_card_in_sui)))
-
-
-
-    # print("leaassst car " + str(least_card))
-
-
-
     least_card_suit = min(least_card_in_sui)
-    #least_card_suit = "C5"
-
     input1 = 0
 
-
-
-
-
-    #target_class = "Hearts"
-    #a = 3
-    #least_card = "S8"
     #_____________________________________________________________
     if (Game.discard[len(Game.discard)-1].suit == target_class):
       if ((Game.discard[len(Game.discard)-1].value >least_card_suit) and(isnottarget==0)) or (isnottarget>=1):
@@ -459,12 +376,9 @@ class Game:
     print(input1)
     #--------------------------------------------------------------
 
-    #input1= int(input())
 
     if input1== 1:
 
-      #print(" card drawn: Do you want to keep " + str(arr[ran_number]) + " [Y]/[N] ")
-      #input2= input()
       input2 = "input"
       while (((input2!= "y") and (input2!= 'Y')) and ((input2!= "n") and (input2!= 'N'))) :
           print("Card drawn: Do you want to keep " + str(Game.deck[ran_number].name) + " [Y] / [N] ")
@@ -478,11 +392,6 @@ class Game:
                 input2 = "n"
           else:
             input2 = "n"
-          # if (Game.discard[len(Game.discard)-1].suit == target_class):# and (Game.discard[len(Game.discard)-1].value >least_card_in_sui):
-          #   input2 = "y"
-          # else:
-          #   input2 = "n"
-            #____________________________________________________________
 
           print(input2)
           #input2
@@ -509,9 +418,7 @@ class Game:
           Game.discard.append(Game.deck[ran_number])
           Game.deck.pop(ran_number)
     elif input1== 2 :
-        #print("Discard pile " + str(Game.discard[len(Game.discard)-1]))
         print("Which card you want to switch with: " + str(player_2[0].name) +" [1], " + str(player_2[1].name) +"  [2]," + str(player_2[2].name)+" [3]")
-        #input4 = int(input())
         input4 = 0
 
         if player_2[0].name == least_card:
@@ -530,29 +437,9 @@ class Game:
         Game.discard.append(c)
         player_2.append(d)
 
-
-
-    #print(player_2.names)
-
-    #Game.player2 = player
     #_____________________________________________________________________________________________________________
 
-
-
-  #   Game.player2[0].name = playerarr[0]
-  #   Game.player2[1].name = playerarr[1]
-  #   Game.player2[2].name  = playerarr[2]
-
-  #  # Game.player2[0].value = player_2[0].value
-  #  # Game.player2[1].value = player_2[1].value
-  #   #-----Game.player2[2].value = player_2[2].value
-
-  #   Game.player2[0].suit = play3[0]
-  #   Game.player2[1].suit = play3[1]
-  #   Game.player2[2].suit = play3[2]
-
     Game.player2 = player_2
-
 
    def getscore(self, x):
        if x == 1:
@@ -565,26 +452,11 @@ class Game:
            player = [Game.player2[0].value, Game.player2[1].value, Game.player2[2].value]
 
            play3 = [Game.player2[0].suit, Game.player2[1].suit, Game.player2[2].suit]
-           # te the prints from the other
-
 
       # print("printt " + str(Game.player2[0].value))
 
-
-
-       # Game.player1[1].value
-
-       # playerarr = ["H6","D3","H4"]
-       # player = [6,3,4]
        points = 0
-       # play3 = ["Hearts","Diamonds","Hearts"]
 
-
-      # print(player)
-       # playerarr = ["S6","S3","C4"]
-       # player = [6,3,4]
-       # points = 0
-       # player3 = ["Clubs", "Spades","Spades"]
        if ((play3[0] == play3[1]) and (play3[1] == play3[2]) and (play3[0] == play3[2])):
            points = player[0] + player[1] + player[2]
            return points
@@ -617,20 +489,20 @@ class Game:
        # print(getscore(player,playerarr, player3))
 
 
-# ----------
+# ------------------------------------------------------------------------------
 print("Welcome to the game of")
 print(Fore.CYAN+  r"""
- ________  ________  ________  ___  ___       ___       ________  ________     
-|\   ____\|\   __  \|\   ___ \|\  \|\  \     |\  \     |\   __  \|\   ____\    
-\ \  \___|\ \  \|\  \ \  \_|\ \ \  \ \  \    \ \  \    \ \  \|\  \ \  \___|    
- \ \  \    \ \   __  \ \  \ \\ \ \  \ \  \    \ \  \    \ \   __  \ \  \       
-  \ \  \____\ \  \ \  \ \  \_\\ \ \  \ \  \____\ \  \____\ \  \ \  \ \  \____  
+ ________  ________  ________  ___  ___       ___       ________  ________
+|\   ____\|\   __  \|\   ___ \|\  \|\  \     |\  \     |\   __  \|\   ____\
+\ \  \___|\ \  \|\  \ \  \_|\ \ \  \ \  \    \ \  \    \ \  \|\  \ \  \___|
+ \ \  \    \ \   __  \ \  \ \\ \ \  \ \  \    \ \  \    \ \   __  \ \  \
+  \ \  \____\ \  \ \  \ \  \_\\ \ \  \ \  \____\ \  \____\ \  \ \  \ \  \____
    \ \_______\ \__\ \__\ \_______\ \__\ \_______\ \_______\ \__\ \__\ \_______\
     \|_______|\|__|\|__|\|_______|\|__|\|_______|\|_______|\|__|\|__|\|_______|
                 """+  Style.RESET_ALL)
 print("Do you want to play with an AI [1] or a person [2]")
 
-                                                                               
+
 isAi =0
 input34 = int(input())
 print(" ")
@@ -692,7 +564,6 @@ while (((S.getscore(1) < 31) and (S.getscore(2) < 31)) and knock != 2):
         # S.printplay_val()
         S.print_main(2)
         # S.printdeck()
-
         S.artificial_intelligence()
         S.getscore(2)
         # S.printdeck()
@@ -705,6 +576,16 @@ while (((S.getscore(1) < 31) and (S.getscore(2) < 31)) and knock != 2):
             print("Do you want to knock? [Y] / [N]")
             #a = input()
             a = "n"
+
+            """
+            knock:
+             -generally user selects suit and aims to get a score of 31 using cards in that suite
+             -only info about the other user's cards is from what is there in the discard pile.
+             -predict suit and points of player with discard info
+             -normally player discards cards of different suit first then lower cards of target suite
+             -when confident about this information, check if player's score is less than AI score then knock
+            """  
+
 
             if ((a == "y") or (a == 'Y')):
                 print("Player 1 knocked")
@@ -720,7 +601,7 @@ while (((S.getscore(1) < 31) and (S.getscore(2) < 31)) and knock != 2):
       #  print("____________________________________Player2__________________________________________")
       #  S.printval()
       #  S.printplay_val()
-       
+
        S.print_main(2)
 
        # S.printdeck()
@@ -735,7 +616,7 @@ while (((S.getscore(1) < 31) and (S.getscore(2) < 31)) and knock != 2):
        elif (knock == 0):
            print("Do you want to knock? [Y] / [N]")
            a = input()
-           
+
            if ((a == "y") or (a == 'Y')):
                print("Player 1 knocked")
                knock = 1
@@ -754,14 +635,14 @@ if (S.getscore(1) > S.getscore(2)):
    print(r"""
          _          __
  _    __(_)__  ___ / /
-| |/|/ / / _ \(_-</_/ 
-|__,__/_/_//_/___(_)  
-  """)                    
+| |/|/ / / _ \(_-</_/
+|__,__/_/_//_/___(_)
+  """)
 elif (S.getscore(1) < S.getscore(2)):
    print("Player 2")
-print(r"""            
+print(r"""
          _          __
  _    __(_)__  ___ / /
-| |/|/ / / _ \(_-</_/ 
-|__,__/_/_//_/___(_)  
- """)                     
+| |/|/ / / _ \(_-</_/
+|__,__/_/_//_/___(_)
+ """)
